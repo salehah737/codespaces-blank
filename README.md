@@ -26,40 +26,72 @@ A hybrid platform combining **brick-and-mortar franchise management** with **e-c
 
 ### **Directory Structure**  
 ```bash
-groceries-project/  
-├── backend/                  # Python Core  
-│   ├── apps/  
-│   │   ├── franchises/       # Franchise location models, staff mgmt  
-│   │   ├── ecommerce/        # Product catalog, orders, payments  
-│   │   ├── inventory/        # Real-time stock tracking (per franchise)  
-│   │   └── users/           # Customer & franchise-owner auth  
-│   ├── utils/                # Pricing calculators, SMS/email services  
-│   ├── config/               # Settings, database connections  
-│   ├── requirements.txt  
-│   └── manage.py  
-│  
-├── frontend/                 # E-Commerce UI  
-│   ├── public/  
-│   ├── src/  
-│   │   ├── components/       # Reusable UI (ProductCard, Cart, Navbar)  
-│   │   ├── pages/            # Next.js routes (Home, Checkout, Dashboard)  
-│   │   ├── store/            # Redux state (cart, user session)  
-│   │   └── services/         # API calls to backend  
-│   ├── package.json  
-│   └── Dockerfile  
-│  
-├── ops/                      # DevOps  
-│   ├── docker-compose.yml    # Multi-container setup  
-│   ├── nginx/                # Reverse proxy config  
-│   └── scripts/              # Deployment/backup scripts  
-│  
-├── docs/                     # Project documentation  
-│   ├── API.md                # Swagger/Postman specs  
-│   └── ERD.png               # Database schema  
-│  
-├── .gitignore  
-├── README.md                 # Setup guide, project goals  
-└── .env                      # Environment variables  
+groceries-project/
+├── backend/
+│   ├── apps/
+│   │   ├── ecommerce/
+│   │   │   ├── models/
+│   │   │   │   ├── order.py
+│   │   │   │   ├── payment.py
+│   │   │   │   └── cart.py
+│   │   │   ├── serializers/
+│   │   │   ├── views/
+│   │   │   ├── urls.py
+│   │   │   └── tests/
+│   │   ├── franchises/
+│   │   │   ├── models/
+│   │   │   │   ├── franchise.py
+│   │   │   │   └── staff.py
+│   │   │   └── geo/
+│   │   ├── inventory/
+│   │   │   ├── models/
+│   │   │   │   ├── product.py
+│   │   │   │   ├── category.py
+│   │   │   │   └── stock.py
+│   │   │   └── management/
+│   │   ├── users/
+│   │   │   ├── models/
+│   │   │   │   └── user.py
+│   │   │   ├── auth/
+│   │   │   └── profiles/
+│   │   └── utils/
+│   │       ├── notifications.py
+│   │       ├── pricing.py
+│   │       └── validators.py
+│   ├── config/
+│   │   ├── settings/
+│   │   │   ├── base.py
+│   │   │   ├── production.py
+│   │   │   └── local.py
+│   │   └── asgi.py
+│   └── manage.py
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── cart/
+│   │   │   ├── product/
+│   │   │   └── franchise/
+│   │   ├── pages/
+│   │   │   ├── api/
+│   │   │   ├── account/
+│   │   │   └── checkout/
+│   │   ├── store/
+│   │   │   ├── cartSlice.ts
+│   │   │   └── authSlice.ts
+│   │   └── services/
+│   │       ├── api.ts
+│   │       ├── cart.ts
+│   │       └── auth.ts
+├── ops/
+│   ├── docker/
+│   │   ├── nginx/
+│   │   └── postgres/
+│   └── scripts/
+├── docs/
+│   ├── api/
+│   └── architecture/
+└── .github/
+    └── workflows/
 ```
 
 ---
