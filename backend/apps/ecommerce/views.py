@@ -15,4 +15,4 @@ class ProductListView(generics.ListAPIView):  # Fixed ListoprView → ListAPIVie
 
 class ProductDetailView(generics.RetrieveAPIView):  # Added proper implementation
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    serializer_class = ProductSerialize r
