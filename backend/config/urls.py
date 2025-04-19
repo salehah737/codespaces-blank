@@ -1,14 +1,25 @@
-from django.contrib import admin # type: ignore
-from django.urls import path, include # type: ignore
-from django.urls import path # type: ignore
-from .views import RegisterView, LoginView # type: ignore
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+urlpatterns = [
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/auth/', include('users.urls')),
-    path('api/ecommerce/', include('ecommerce.urls')),
-    path('api/inventory/', include('inventory.urls')),
-    path('api/franchises/', include('franchises.urls')),
-    path('register/', RegisterView.as_view(), name='register'),
-    path('login/', LoginView.as_view(), name='login'),
+    path('api/', include('ecommerce.urls')),  # Updated to include the 'ecommerce' app
+]
+
+# filepath: /workspaces/codespaces-blank/groceries-project/backend/ecommerce/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('products/', views.ProductListView.as_view(), name='product-list'),
+    path('products/<int:pk>/', views.ProductDetailView.as_view(), name='product-detail'),
 ]
