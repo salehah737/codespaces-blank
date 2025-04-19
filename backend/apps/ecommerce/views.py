@@ -1,9 +1,10 @@
 # Create your views here.
-from rest_framework import generics, permissions, filters # type: ignore
-from rest_framework.response import Response # type: ignore
+from rest_framework import generics, permissions, filters  # type: ignore
+from rest_framework.response import Response  # type: ignore
+from rest_framework.decorators import api_view  # type: ignore # Added import
 from .models import Product, Cart, CartItem
-from .serializers import ProductSerializer, CartSerializer, CartItemSerializer # type: ignore
-from django_filters.rest_framework import DjangoFilterBackend # type: ignore
+from .serializers import ProductSerializer, CartSerializer, CartItemSerializer  # type: ignore
+from django_filters.rest_framework import DjangoFilterBackend  # type: ignore
 
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
@@ -31,4 +32,9 @@ class AddToCartView(generics.CreateAPIView):
     def perform_create(self, serializer):
         cart, created = Cart.objects.get_or_create(user=self.request.user)
         serializer.save(cart=cart)
+
+# New function-based view
+@api_view(['GET'])
+def product_list(request):
+    return Response({"message": "This will be your product list API"})
 
