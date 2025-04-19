@@ -136,3 +136,4 @@ groceries-project/
 --- 
 
 This structure balances scalability, maintainability, and user experience. Start by building the **backend APIs** (e.g., `/api/products`, `/api/franchises`) and a **minimum viable frontend**, then iterate with advanced features. 🛒🚀
+hello
